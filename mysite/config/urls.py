@@ -19,6 +19,8 @@ from community import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('', views.index, name='index'),    # / 페이지에 해당하는 URL
     #path("community/", views.index),
     path("community/", include('community.urls')),
+    path("common/", include('common.urls')),
 ]
