@@ -97,3 +97,15 @@ def question_modify(request, question_id):
         form = QuestionForm(instance=question)
     context = {'form':form}
     return render(request, 'community/question_form.html', context)
+
+@login_required(login_url='common:login')
+def question_delete(request, question_id):
+    """
+    질문 삭제
+    """
+    question = get_object_or_404(Question, pk=question_id)
+    if request.user != question.author:
+        messages.error(request, '삭제 권한이 없습니다.')
+        return redirect('community:detail', question_id = question.id)
+    question.delete()
+    return redirect('community:index')
