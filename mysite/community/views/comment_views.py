@@ -112,6 +112,7 @@ def comment_modify_answer(request, comment_id):
     context = {'form':form}
     return render(request, 'community/comment_form.html', context)
 
+
 @login_required(login_url='common:login')
 def comment_delete_answer(request, comment_id):
     """
